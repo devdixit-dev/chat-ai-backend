@@ -13,10 +13,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.28.2",
   "dependencies": {
+    "@types/multer": "^2.0.0",
     "@types/yamljs": "^0.2.34",
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
+    "multer": "^2.0.2",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
   },

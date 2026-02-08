@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import cluster, { worker } from 'cluster';
+import cluster from 'cluster';
 import os from 'os';
 
 import createServer from './app';

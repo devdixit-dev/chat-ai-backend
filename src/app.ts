@@ -1,11 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
 import path from 'path';
 import responseHandler from "./services/responseHandler.service";
-import { createUserTable } from "./data/createTables";
 import AuthRoute from "./routes/auth.route";
+import connectDb from "./config/db.config";
 
 const createServer = async () => {
   const app = express();
+  await connectDb();
 
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.info(`[${Date.now()}] - ${req.url} | ${req.method} | ${req.ip} | ${req.headers["user-agent"]}`);
@@ -18,8 +19,6 @@ const createServer = async () => {
   app.use("/api/auth", AuthRoute);
   // app.use("/api/user");
   // app.use("/api/admin");
-
-  createUserTable();
 
   app.get("/", async (_: Request, res: Response) => {
     return responseHandler(

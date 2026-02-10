@@ -1,17 +1,18 @@
-import pkg from 'pg';
+import mongoose from "mongoose";
 
-const { Pool } = pkg;
+const url = process.env.DB_URL;
+const db_name = process.env.DB_NAME;
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: Number(process.env.DB_PORT)
-});
+const connectDb = async () => {
+  try{
+    await mongoose.connect(String(url), { dbName: db_name })
+    .then(() => { console.log(`MONGODB CONNECTED`) })
+    .catch((e) => { console.error(`Mongo db connection error`, e) });
+  }
+  catch(error) {
+    console.error('Error in connecting mongo db connection', error);
+    return null;
+  }
+}
 
-pool.on("connect", () => {
-  console.log(`POSTGRES CONNECTED`);
-});
-
-export default pool;
+export default connectDb;

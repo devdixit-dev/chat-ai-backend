@@ -1,6 +1,3 @@
-import initEmbeddingModel from "../config/embedding.config";
-
-// pdf to text
 const pdfParse = require("pdf-parse");
 
 export const extractTextFromPdf = async (pdfBuffer: Buffer) => {
@@ -58,19 +55,6 @@ export const chunkText = (text: string, chunkSize = 1000, overlap = 200) => {
   }
   catch (error) {
     console.error('Error in chunking text', error);
-    return null;
-  }
-}
-
-export const generateEmbedding = async (text: string) => {
-  try{
-    const extractor = await initEmbeddingModel();
-    const output = await extractor(text, { pooling: 'mean', normalize: true });
-
-    return Array.from(output.data);
-  }
-  catch(error) {
-    console.error('Error in generatig embedding', error);
     return null;
   }
 }

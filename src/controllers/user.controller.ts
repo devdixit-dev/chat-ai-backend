@@ -9,7 +9,7 @@ export const uploadPdfPipeline = async (req: Request, res: Response) => {
   try{
     if(!req.file) return responseHandler(res, 400, false, 'No PDF file uploaded');
 
-    const userId = (req as any).user.id || 'default';
+    const userId = req.body.id || 'default';
 
     // 1. extract text from pdf buffer data
     const text: string = await extractTextFromPdf(req.file.buffer);

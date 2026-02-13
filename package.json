@@ -23,8 +23,9 @@
     "express": "^5.2.1",
     "mongoose": "^9.2.0",
     "multer": "^2.0.2",
-    "pdf-parse": "^2.4.5",
+    "pdf2json": "link:pdf2json",
     "swagger-ui-express": "^5.0.1",
+    "unpdf": "^1.4.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
